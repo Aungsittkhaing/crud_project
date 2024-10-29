@@ -15,6 +15,6 @@ Route::resource('category', CategoryController::class);
 
 Route::get('search', [ItemController::class, 'search'])->name('item.search');
 
-// Route::resource('user', UserController::class);
-// Route::resource('post', PostController::class);
-// Route::resource('country', CountryController::class);
+Route::resource('user', UserController::class);
+Route::resource('post', PostController::class);
+Route::resource('country', CountryController::class);

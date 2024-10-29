@@ -13,7 +13,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $country = Country::find(2);
+        $country = Country::find(1);
         // $country = $country->user()->get();
         $posts = $country->posts;
         return $posts;

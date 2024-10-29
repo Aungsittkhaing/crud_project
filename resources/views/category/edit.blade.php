@@ -23,7 +23,7 @@
                             @error('name')
                                 border-red-600
                             @enderror
-                            block w-full p-4 ps-10 text-sm text-gray-900 border rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            block w-full p-4 text-sm text-gray-900 border rounded-lg focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Enter your name" />
                         @error('name')
                             <p class="text-red-600">{{ $message }}</p>

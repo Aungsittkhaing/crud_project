@@ -10,7 +10,6 @@
 </head>
 
 <body class="py-12">
-
     <div class="container max-w-6xl mx-auto">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <form action="{{ route('item.search') }}" method="GET">

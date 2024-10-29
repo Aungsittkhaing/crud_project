@@ -11,13 +11,37 @@ class CategoryApiController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function search(Request $request)
+    {
+        if ($request->name) {
+            $category = Category::where('name', 'LIKE', '%' . $request->name . '%')->get();
+            return response()->json([
+                'id' => $category[0]->id,
+                'name' => $category[0]->name,
+                'description' => $category[0]->description,
+                'message' => 'success',
+            ]);
+        }
+        return response()->json([
+            'message' => 'Not found search data',
+        ]);
+    }
     public function index()
     {
+        // $categories = Category::all()->makeHidden(['created_at', 'updated_at']);
+
         $categories = Category::all();
-        return response()->json([
-            'categories' => $categories,
-            'message' => 'success',
-        ]);
+
+        // $categories = Category::select('id', 'name', 'description')->get();
+
+        // return response()->json([
+        //     'categories' => $categories,
+        //     'message' => 'success',
+        // ]);
+        if ($categories->isEmpty()) {
+            return apiResponse(null, 'Category not found', 404);
+        }
+        return apiResponse($categories, 'success', 200);
     }
 
     /**
@@ -49,7 +73,11 @@ class CategoryApiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Category::find($id);
+        return response()->json([
+            'category' => $category,
+            'message' => 'success',
+        ]);
     }
 
     /**

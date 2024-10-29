@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\View;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        View::share('fruit', 'apple');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -38,7 +43,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         $category->save();
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('create', 'category is successfully created');
     }
 
     /**
@@ -65,7 +70,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->description = $request->description;
         $category->update();
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('update', 'category is successfully updated');
     }
 
     /**
@@ -74,6 +79,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return back();
+        return redirect()->route('category.index')->with('delete', 'category is successfully deleted');
     }
 }

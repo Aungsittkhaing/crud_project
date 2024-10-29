@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Post::find(2);
+        $post = Post::find(5);
         // return view('post.index', compact('posts'));
         // $user = $post->user;
         // echo $user->name;

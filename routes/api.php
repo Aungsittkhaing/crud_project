@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\Api\ItemApiController;
 use Illuminate\Http\Request;
@@ -12,11 +13,16 @@ Route::get('/user', function (Request $request) {
 Route::get('item', function () {
     return response()->json('Hello World');
 });
-//category
-Route::apiResource('category', CategoryApiController::class);
-//item
-Route::apiResource('item', ItemApiController::class);
 // Route::get('category', [CategoryApiController::class, 'index']);
 // Route::post('category', [CategoryApiController::class, 'store']);
 // Route::delete('category/{id}', [CategoryApiController::class, 'destroy']);
 // Route::put('category/{id}', [CategoryApiController::class, 'update']);
+
+//category
+Route::get('category/search', [CategoryApiController::class, 'search']);
+Route::apiResource('category', CategoryApiController::class);
+//item
+Route::get('item/search', [ItemApiController::class, 'search']);
+Route::apiResource('item', ItemApiController::class);
+
+Route::post('login', [AuthController::class, 'login']);
